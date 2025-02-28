@@ -1,0 +1,16 @@
+D:\2.winform\MonitorSys\obj\Debug\net8.0-windows\MonitorSys.csproj.AssemblyReference.cache
+D:\2.winform\MonitorSys\obj\Debug\net8.0-windows\Sunny.UI.FDataGridView.resources
+D:\2.winform\MonitorSys\obj\Debug\net8.0-windows\MonitorSys.FMain.resources
+D:\2.winform\MonitorSys\obj\Debug\net8.0-windows\MonitorSys.Pages.Home.resources
+D:\2.winform\MonitorSys\obj\Debug\net8.0-windows\MonitorSys.Pages.Logger.resources
+D:\2.winform\MonitorSys\obj\Debug\net8.0-windows\MonitorSys.Forms.Pages.Media.resources
+D:\2.winform\MonitorSys\obj\Debug\net8.0-windows\MonitorSys.Pages.Setter.resources
+D:\2.winform\MonitorSys\obj\Debug\net8.0-windows\QQDESK.FrmLogin.resources
+D:\2.winform\MonitorSys\obj\Debug\net8.0-windows\QQDESK.FrmRegister.resources
+D:\2.winform\MonitorSys\obj\Debug\net8.0-windows\MonitorSys.Resource.resources
+D:\2.winform\MonitorSys\obj\Debug\net8.0-windows\MonitorSys.csproj.GenerateResource.cache
+D:\2.winform\MonitorSys\obj\Debug\net8.0-windows\MonitorSys.GeneratedMSBuildEditorConfig.editorconfig
+D:\2.winform\MonitorSys\obj\Debug\net8.0-windows\MonitorSys.AssemblyInfoInputs.cache
+D:\2.winform\MonitorSys\obj\Debug\net8.0-windows\MonitorSys.AssemblyInfo.cs
+D:\2.winform\MonitorSys\obj\Debug\net8.0-windows\MonitorSys.csproj.CoreCompileInputs.cache
+D:\2.winform\MonitorSys\obj\Debug\net8.0-windows\MonitorSys.sourcelink.json

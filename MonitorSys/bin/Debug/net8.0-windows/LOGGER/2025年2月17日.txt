@@ -1,0 +1,6 @@
+Information 2025/2/17 13:41:55 FrmLogin LogInfomation
+Warning 2025/2/17 13:41:55 FrmLogin LogWarning
+Error 2025/2/17 13:41:55 FrmLogin LogError
+Information 2025/2/17 14:00:31 FrmLogin LogInfomation
+Warning 2025/2/17 14:00:31 FrmLogin LogWarning
+Error 2025/2/17 14:00:31 FrmLogin LogError
