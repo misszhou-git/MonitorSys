@@ -7,24 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Win32;
-using MonitorSys.Models;
+using Microsoft.VisualBasic.ApplicationServices;
 using MonitorSys.utils;
-using QQDESK.Models;
 using QQDESK.service;
 using QQDESK.ServiceImpl;
 using QQDESK.utils;
 using Sunny.UI;
+using QQDESK.Models;
 
 namespace QQDESK
 {
     public partial class FrmRegister : UIForm
     {
+        public IUserService userService;
+        public Models.User User {  get; set; }
         public FrmRegister()
         {
             InitializeComponent();
         }
-        private IUserService UserServiceImpl {  get; set; }
+        private void FrmRegister_Load(object sender, EventArgs e)
+        {
+            this.tips.Visible = false;
+            userService = new UserServiceImpl();
+           
+        }
+
 
         private void doRegister_Click(object sender, EventArgs e)
         {
@@ -54,37 +61,27 @@ namespace QQDESK
                 return;
             }
             this.tips.Visible = false;
-            //构建当前注册用户对象
-            User user = new User();
+
+            Models.User user = new Models.User();
             user.UserName = name;
             user.Password = pass;
-            user.UserEmail = email;
-            user.Phone = phone;
-           
-            if (UserServiceImpl.Register(user))
+            user.Email = email;
+            user.Phone = phone; 
+
+            if (userService.Register(user))
             {
-                
-                //生成随机帐号信息
-                //注册成功
-                MessageBox.Show("注册成功,当前帐号为："+ UserUtil.CreateUserAccount()+"，跳转登录页...");
+                string newAccount = UserUtil.CreateAccount();
+                MessageBox.Show("注册成功，帐号为：" + newAccount + "正在跳转登录页...");
                 Thread.Sleep(2000);
-                this.DialogResult = DialogResult.Cancel;
+                this.DialogResult = DialogResult.OK;
             }
             else
             {
-                MessageBox.Show("注册失败");
+                MessageBox.Show("注册失败，手机号已存在");
             }
-           
         }
 
-        private void FrmRegister_Load(object sender, EventArgs e)
-        {
-            this.tips.Visible = false;
-
-            UserServiceImpl = new UserServiceImpl();
-
-        }
-
+       
         private void exit_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;

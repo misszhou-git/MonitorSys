@@ -4,62 +4,52 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MonitorSys.Models;
-using MonitorSys.Pages;
+using MonitorSys.Service;
+using MonitorSys.ServiceImpl;
 using QQDESK.Models;
 using QQDESK.service;
-using QQDESK.utils;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace QQDESK.ServiceImpl
 {
-    internal class UserServiceImpl : IUserService
+    public class UserServiceImpl : IUserService
     {
-        private readonly UserDB userDb;
-    
+        public IUserServiceDB UserServiceDB { get; set; }
+        public List<User> Users { get; set; }
+
         public UserServiceImpl() {
-            userDb = new UserDB();
+            UserServiceDB = new UserServiceDBImpl();
         }
-
-        public bool CheckUserInput(string str)
-        {
-            if (string.IsNullOrEmpty(str) || str.Length < 5) {
-                return true;
-            }
-            return false;
-                
-        }
-
-
+       
         public bool Login(User user)
         {
-            if (string.IsNullOrEmpty(user.UserName)||string.IsNullOrEmpty(user.Password) ){
-                return false;
-            }
-            foreach (User item in userDb.users)
-            {
-                if (item.UserName == user.UserName && item.Password == user.Password) {
-                    return true;
-                }
+            if (user.UserName == "admin" && user.Password == "123456") {
+                return true;
             }
             return false;
         }
 
         public bool Register(User user)
         {
-            if (string.IsNullOrEmpty(user.UserName) && string.IsNullOrEmpty(user.Password)) {
+            
+            if (string.IsNullOrEmpty(user.UserName) || string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Phone))
+            {
                 return false;
             }
-            foreach (User item in userDb.users)
+            Users = new UserDB().users;
+            //检验手机号唯一性
+            foreach (var item in Users)
             {
                 if(item.Phone == user.Phone)
                 {
                     return false;
                 }
             }
-            userDb.users.Add(user);
-            //存到本地文件中
-          
+            //保存注册用户信息
+            UserServiceDB.SaveUser(user);
+
             return true;
         }
+
+
     }
 }

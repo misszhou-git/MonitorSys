@@ -21,7 +21,7 @@ namespace MonitorSys
         {
             InitializeComponent();
             //连接数据库
-           // DatabaseHelper.GetConnection();
+            //DatabaseHelper.GetConnection();
             //设置关联
             Header.TabControl = MainTabControl;
 

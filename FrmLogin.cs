@@ -17,10 +17,9 @@ namespace QQDESK
 {
     public partial class FrmLogin : UIForm
     {
-        //本地用户信息
-        public IUserDBService UserDBService { get; set; }
         public UserDB UserDB { get; set; }
-        //public IUserService UserService { get; set; }
+        public IUserServiceDB UserServiceDB {  get; set; }
+
         public FrmLogin()
         {
             InitializeComponent();
@@ -71,6 +70,11 @@ namespace QQDESK
             {
                 //MessageBox.Show("登录成功，正在跳转进入系统...");
 
+                //Console.WriteLine("记录日志信息");
+                //Log<FrmLogin>.LogInfomation("LogInfomation");
+                //Log<FrmLogin>.LogWarning("LogWarning");
+                //Log<FrmLogin>.LogError("LogError");
+
                 //打开主界面
                 this.DialogResult = DialogResult.Cancel;
             }
@@ -88,7 +92,7 @@ namespace QQDESK
 
             // this.Show();
             //读取是否记住密码
-            string filePath = @"D:\\1.Project\\MonitorSys\remembetPassword.txt";
+            string filePath = @"Users\remberPass.txt";
             using (StreamReader reader = new StreamReader(filePath))
             {
                 try
@@ -106,10 +110,11 @@ namespace QQDESK
                     Console.WriteLine(ex.Message);
                 }
             }
-            //加载本地所有的用户信息
-            UserDBService = new UserDBServiceImpl();
-            //UserDB.users = UserDBService.GetUsers();
-           
+            //获取本地用户信息
+            UserDB  = new UserDB();
+            UserServiceDB = new UserServiceDBImpl();
+            UserDB.users = UserServiceDB.GetUser();
+
         }
 
 

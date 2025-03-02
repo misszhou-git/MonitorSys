@@ -4,42 +4,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MonitorSys.Models;
-using QQDESK.Models;
 
 namespace MonitorSys.utils
 {
-    internal static class UserUtil
+    public static  class UserUtil
     {
-        /// <summary>
-        /// 系统自动生成新帐号
-        /// </summary>
-        /// <returns>生成的帐号字条串</returns>
-        public static string CreateUserAccount()
+        private static  UserDB db {  get; set; }
+        public static string CreateAccount()
         {
-            StringBuilder sb = new StringBuilder();
-            CreateAccout:
-            Random random = new Random();
-            for (int i = 0; i < 9; i++)
+            createAccount:
+            Random rnd = new Random();
+            StringBuilder newAccount = new StringBuilder();
+            for (int i = 0; i < 10; i++)
             {
-                sb.Append(random.Next(9));
+                newAccount.Append(rnd.Next(9));
             }
-            if (CheckAccount(sb.ToString())) {
-                return sb.ToString();
+            //检查帐号是否重复
+            if (CheckUserCount(newAccount))
+            {
+                return newAccount.ToString();
             }
             else
             {
-                goto CreateAccout;
+                goto createAccount;
             }
-           
         }
+        /// <summary>
+        /// 检查帐号是否重复
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
 
-        private static bool CheckAccount(string account)
+        private static bool CheckUserCount(StringBuilder newAccount)
         {
-            UserDB userDB = new UserDB();
-            foreach (var item in userDB.users)
-            {
-                if(item.Account == account)
-                {
+            db = new UserDB();
+            foreach (var item in db.users) {
+                if (item.Account == newAccount.ToString()) {
                     return false;
                 }
             }

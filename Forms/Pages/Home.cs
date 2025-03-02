@@ -16,17 +16,7 @@ namespace MonitorSys.Pages
         public Home()
         {
             InitializeComponent();
-
-        }
-
-        private void uiLabel5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void uiIntegerUpDown3_ValueChanged(object sender, int value)
-        {
-
+           
         }
     }
 }

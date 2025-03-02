@@ -3,13 +3,13 @@ using System.IO;
 using System.Text;
 using Microsoft.Extensions.Logging;
 
-namespace MonitorSys.utils
+namespace QQDESK
 {
     public static class Log<T> where T : class
     {
-        private static ILogger<T> logs = null;
-        public static LogLevel _LogLevel = LogLevel.Information;
-
+        private static ILogger<T> logs;
+        public static  LogLevel _LogLevel = LogLevel.Information;
+        
         /// <summary>
         /// 日志初始化
         /// </summary>
@@ -62,24 +62,24 @@ namespace MonitorSys.utils
         /// </summary>
         /// <param name="level">日志级别</param>
         /// <param name="msg">日志内容</param>
-        private static void LogFile(string level, string msg)
+        private static void LogFile(string level,string msg)
         {
             logs = InitLogger(_LogLevel);
-
+ 
             if (!Directory.Exists("LOGGER"))
             {
-                Directory.CreateDirectory("LOGGER");
+                Directory.CreateDirectory("LOGGER"); 
             }
-
+           
 
             string FilePath = $"{DateTime.Now.Year}年{DateTime.Now.Month}月{DateTime.Now.Day}日.txt";
             //判断文件释放存在
             if (!File.Exists("LOGGER/" + FilePath))
             {
-                var f = File.CreateText(FilePath);
+                var f = File.CreateText(FilePath); 
                 f.Flush();
                 f.DisposeAsync();
-                f.Close();
+                f.Close ();
                 logs.LogDebug("创建日志文件成功");
 
             }
@@ -107,18 +107,19 @@ namespace MonitorSys.utils
         private static void DeleteFile(FileInfo fileInfo)
         {
             var fileName = fileInfo.Name;
-            string[] str = fileName.Split(new char[] { '年', '月', '日', '.', 't', 'x', 't' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] str = fileName.Split(new char[] { '年', '月', '日', '.','t','x','t' }, StringSplitOptions.RemoveEmptyEntries);
             DateTime dateTime = new DateTime((int)Convert.ToInt64(str[0]), (int)Convert.ToInt64(str[1]), (int)Convert.ToInt64(str[2]));
-
-
+            
+        
             if (dateTime.AddDays(7) <= DateTime.Now)
             {
                 File.Delete(fileInfo.FullName);
             }
 
         }
-
+        
     }
 
 }
 
+   

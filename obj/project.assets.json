@@ -1547,11 +1547,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\1.Project\\MonitorSys\\MonitorSys.csproj",
+      "projectUniqueName": "D:\\2.winform\\MonitorSys\\MonitorSys.csproj",
       "projectName": "MonitorSys",
-      "projectPath": "D:\\1.Project\\MonitorSys\\MonitorSys.csproj",
+      "projectPath": "D:\\2.winform\\MonitorSys\\MonitorSys.csproj",
       "packagesPath": "C:\\Users\\lusujin\\.nuget\\packages\\",
-      "outputPath": "D:\\1.Project\\MonitorSys\\obj\\",
+      "outputPath": "D:\\2.winform\\MonitorSys\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

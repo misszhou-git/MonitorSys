@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GBr5pVnaIns=",
+  "dgSpecHash": "9PZoSUIu2Us=",
   "success": true,
-  "projectFilePath": "D:\\1.Project\\MonitorSys\\MonitorSys.csproj",
+  "projectFilePath": "D:\\2.winform\\MonitorSys\\MonitorSys.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lusujin\\.nuget\\packages\\karambolo.extensions.logging.file\\3.6.3\\karambolo.extensions.logging.file.3.6.3.nupkg.sha512",
     "C:\\Users\\lusujin\\.nuget\\packages\\microsoft.extensions.configuration\\9.0.2\\microsoft.extensions.configuration.9.0.2.nupkg.sha512",
