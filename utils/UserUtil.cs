@@ -9,13 +9,12 @@ namespace MonitorSys.utils
 {
     public static  class UserUtil
     {
-        private static  UserDB db {  get; set; }
-        public static string CreateAccount()
+        public static string CreateAccount(int length)
         {
             createAccount:
             Random rnd = new Random();
             StringBuilder newAccount = new StringBuilder();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < length; i++)
             {
                 newAccount.Append(rnd.Next(9));
             }
@@ -38,8 +37,9 @@ namespace MonitorSys.utils
 
         private static bool CheckUserCount(StringBuilder newAccount)
         {
-            db = new UserDB();
-            foreach (var item in db.users) {
+
+            UserDB userDB = UserDB.GetUserDb();
+            foreach (var item in userDB.users) {
                 if (item.Account == newAccount.ToString()) {
                     return false;
                 }

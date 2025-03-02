@@ -70,14 +70,13 @@ namespace QQDESK
 
             if (userService.Register(user))
             {
-                string newAccount = UserUtil.CreateAccount();
-                MessageBox.Show("注册成功，帐号为：" + newAccount + "正在跳转登录页...");
-                Thread.Sleep(2000);
+
+                MessageBox.Show("注册成功,点击确定前往登录");
                 this.DialogResult = DialogResult.OK;
             }
             else
             {
-                MessageBox.Show("注册失败，手机号已存在");
+                MessageBox.Show("注册失败，手机号或用户名已存在");
             }
         }
 

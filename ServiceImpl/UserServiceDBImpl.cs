@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MonitorSys.Service;
+using MonitorSys.utils;
 using QQDESK.Models;
 
 namespace MonitorSys.ServiceImpl
@@ -39,7 +40,7 @@ namespace MonitorSys.ServiceImpl
             string[] str = localUser.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
             try
             {
-                user.Id = Convert.ToInt32(str[0]);
+                user.Id = str[0];
                 user.Account = str[1];
                 user.UserName = str[2];
                 user.Password = str[3];
@@ -58,6 +59,9 @@ namespace MonitorSys.ServiceImpl
         public void SaveUser(User user)
         {
             StringBuilder sb = new StringBuilder();
+            //生成guid
+            user.Id = Guid.NewGuid().ToString();
+
             sb.Append($"{user.Id} {user.Account} {user.UserName}  {user.Password} {user.Email} {user.Phone}");
 
             using (StreamWriter s = new StreamWriter(path, true))

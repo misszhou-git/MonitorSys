@@ -111,7 +111,7 @@ namespace QQDESK
                 }
             }
             //获取本地用户信息
-            UserDB  = new UserDB();
+            UserDB  =  UserDB.GetUserDb();
             UserServiceDB = new UserServiceDBImpl();
             UserDB.users = UserServiceDB.GetUser();
 

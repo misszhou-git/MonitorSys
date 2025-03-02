@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MonitorSys.Models;
 using MonitorSys.Service;
 using MonitorSys.ServiceImpl;
+using MonitorSys.utils;
 using QQDESK.Models;
 using QQDESK.service;
 
@@ -13,17 +14,21 @@ namespace QQDESK.ServiceImpl
 {
     public class UserServiceImpl : IUserService
     {
+        const int ACCOUNT_LENGTH = 7;
         public IUserServiceDB UserServiceDB { get; set; }
         public List<User> Users { get; set; }
 
         public UserServiceImpl() {
             UserServiceDB = new UserServiceDBImpl();
+            Users = UserServiceDB.GetUser();
         }
        
         public bool Login(User user)
         {
-            if (user.UserName == "admin" && user.Password == "123456") {
-                return true;
+            foreach (var item in Users) {
+                if (item.UserName == user.UserName && item.Password == user.Password) {
+                    return true;
+                }
             }
             return false;
         }
@@ -35,15 +40,19 @@ namespace QQDESK.ServiceImpl
             {
                 return false;
             }
-            Users = new UserDB().users;
-            //检验手机号唯一性
+            
+            //检验手机号和用户名唯一性
             foreach (var item in Users)
             {
-                if(item.Phone == user.Phone)
+                if(item.Phone == user.Phone || item.UserName == user.UserName)
                 {
                     return false;
                 }
             }
+
+            //随机生成帐号
+            user.Account = UserUtil.CreateAccount(ACCOUNT_LENGTH);
+
             //保存注册用户信息
             UserServiceDB.SaveUser(user);
 

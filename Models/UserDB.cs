@@ -12,11 +12,11 @@ namespace MonitorSys.Models
     public class UserDB
     {
         public List<User> users;
-        private  UserDB userDb {  get; set; }
+        private static UserDB userDb {  get; set; }
         private IUserServiceDB UserServiceDB { get; set; }
 
-
-        public UserDB()
+        //单例模式，全局只有一个用户对象list
+        private UserDB()
         {
             InitUser();
         }
@@ -24,10 +24,10 @@ namespace MonitorSys.Models
         private void InitUser()
         {
             users = new List<User>();
-            UserServiceDB = new UserServiceDBImpl();
-            users = UserServiceDB.GetUser();
+            //UserServiceDB = new UserServiceDBImpl();
+            //users = UserServiceDB.GetUser();
         }
-        public UserDB GetUserDb()
+        public static UserDB GetUserDb()
         {
             if (userDb == null)
             {
