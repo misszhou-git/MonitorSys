@@ -6,6 +6,7 @@ using MonitorSys;
 using MonitorSys.Models;
 using MonitorSys.Service;
 using MonitorSys.ServiceImpl;
+using MonitorSys.utils;
 using QQDESK.Models;
 using QQDESK.service;
 using QQDESK.ServiceImpl;
@@ -62,7 +63,7 @@ namespace QQDESK
         {
             Models.User user = new Models.User();
             user.UserName = usernameBox.Text.Trim();
-            user.Password = passwordBox.Text.Trim();
+            user.Password = MD5Helper.GetMd5(passwordBox.Text.Trim());
 
             IUserService userService = new UserServiceImpl();
 

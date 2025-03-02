@@ -52,6 +52,8 @@ namespace QQDESK.ServiceImpl
 
             //随机生成帐号
             user.Account = UserUtil.CreateAccount(ACCOUNT_LENGTH);
+            //密码加密
+            user.Password = MD5Helper.GetMd5(user.Password);
 
             //保存注册用户信息
             UserServiceDB.SaveUser(user);
