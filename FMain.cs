@@ -60,19 +60,22 @@ namespace MonitorSys
 
             FrmLogin frmLogin = new FrmLogin();
             frmLogin.ShowDialog();
-      
-                //查询当前登录用户信息
-                IUserServiceDB UserServiceDB = new UserServiceDBImpl();
-                User user = new User();
-                user =UserServiceDB.GetUserById(CurrentUserDB.Id);
-                //当前登录用户信息
-                this.uiLabel1.Text = "你好," + user.UserName + ",欢迎回来";
-      
+
+            //查询当前登录用户信息
+            IUserServiceDB UserServiceDB = new UserServiceDBImpl();
+            User user = new User();
+            user = UserServiceDB.GetUserById(CurrentUserDB.Id);
+            //当前登录用户信息
+            //this.uiLabel1.Text = "你好," + user.UserName + ",欢迎回来";
+
 
 
         }
 
-
+        private void uiButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 
 }

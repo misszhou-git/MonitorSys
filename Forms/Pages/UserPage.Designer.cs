@@ -177,6 +177,7 @@
             uiButton1.TabIndex = 8;
             uiButton1.Text = "更新";
             uiButton1.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            uiButton1.Click += uiButton1_Click;
             // 
             // UserPage
             // 

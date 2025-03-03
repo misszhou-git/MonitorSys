@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MonitorSys.Models;
 using MonitorSys.Service;
 using MonitorSys.utils;
 using QQDESK.Models;
@@ -95,5 +96,46 @@ namespace MonitorSys.ServiceImpl
             }
             return currentUser;
         }
+
+        /// <summary>
+        /// 根据id修改当前用户对象信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>用户对象</returns>
+        public void UpdateUserById(User user)
+        {
+            //获取所有用户信息
+            List<User> users = GetUser();
+            //删除本地用户数据txt文件
+            DeleteUserById();
+            FileStream fs = File.Create(path);
+            fs.Flush();
+            fs.Close();
+            //构建新用户对象信息
+            for(var i=0;i< users.Count; i++)
+            {
+                User newUser = new User();
+                if (users[i].Id == user.Id)
+                {
+                    newUser.Id = users[i].Id;
+                    newUser.Account = users[i].Account;
+                    newUser.UserName = users[i].UserName;
+                    newUser.Password = users[i].Password;
+                    newUser.Email = users[i].Email;
+                    newUser.Phone = users[i].Phone;
+                }
+                //将新信息存入本地文件
+                SaveUser(newUser);
+            }
+            
+
+        }
+
+        public void DeleteUserById()
+        {
+            File.Delete(path);
+        }
+
+      
     }
 }

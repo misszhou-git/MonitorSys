@@ -38,5 +38,19 @@ namespace MonitorSys.Forms.Pages
             this.uiTextBox5.Text = user.Phone;
 
         }
+
+        private void uiButton1_Click(object sender, EventArgs e)
+        {
+            User newUser = new User();
+            newUser.Id = CurrentUserDB.Id;
+            newUser.UserName = this.uiTextBox1.Text.Trim();
+            newUser.Account = this.uiTextBox2.Text.Trim();
+            newUser.Password = this.uiTextBox3.Text.Trim();
+            newUser.Email = this.uiTextBox4.Text.Trim();
+            newUser.Phone = this.uiTextBox5.Text.Trim();
+
+            UserServiceDB.UpdateUserById(newUser);
+            MessageBox.Show("用户信息更新成功");
+        }
     }
 }

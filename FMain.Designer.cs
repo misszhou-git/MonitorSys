@@ -28,24 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            uiLabel1 = new Sunny.UI.UILabel();
+            uiButton1 = new Sunny.UI.UIButton();
             Header.SuspendLayout();
             SuspendLayout();
             // 
             // Header
             // 
-            Header.Controls.Add(uiLabel1);
+            Header.Controls.Add(uiButton1);
+            Header.Size = new Size(800, 73);
             // 
-            // uiLabel1
+            // uiButton1
             // 
-            uiLabel1.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
-            uiLabel1.ForeColor = Color.FromArgb(48, 48, 48);
-            uiLabel1.Location = new Point(498, 29);
-            uiLabel1.Name = "uiLabel1";
-            uiLabel1.Size = new Size(263, 29);
-            uiLabel1.TabIndex = 0;
-            uiLabel1.Text = "你好，{username}欢迎回来";
-            uiLabel1.TextAlign = ContentAlignment.MiddleRight;
+            uiButton1.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            uiButton1.Location = new Point(726, 20);
+            uiButton1.MinimumSize = new Size(1, 1);
+            uiButton1.Name = "uiButton1";
+            uiButton1.Size = new Size(71, 29);
+            uiButton1.TabIndex = 1;
+            uiButton1.Text = "退出";
+            uiButton1.TipsFont = new Font("宋体", 9F, FontStyle.Regular, GraphicsUnit.Point, 134);
+            uiButton1.Click += uiButton1_Click;
             // 
             // FMain
             // 
@@ -61,6 +63,6 @@
 
         #endregion
 
-        private Sunny.UI.UILabel uiLabel1;
+        private Sunny.UI.UIButton uiButton1;
     }
 }
