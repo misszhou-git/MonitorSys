@@ -20,5 +20,12 @@ namespace MonitorSys.Service
         /// </summary>
         /// <param name="user"></param>
         void SaveUser(User user);
+
+        /// <summary>
+        /// 根据id查找当前用户对象信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>用户对象</returns>
+        User GetUserById(string id);
     }
 }

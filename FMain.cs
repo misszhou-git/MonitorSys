@@ -8,8 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MonitorSys.Forms.Pages;
+using MonitorSys.Models;
 using MonitorSys.Pages;
+using MonitorSys.Service;
+using MonitorSys.ServiceImpl;
 using QQDESK;
+using QQDESK.Models;
 using Sunny.UI;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -17,6 +21,7 @@ namespace MonitorSys
 {
     public partial class FMain : UIHeaderMainFooterFrame
     {
+
         public FMain()
         {
             InitializeComponent();
@@ -24,13 +29,14 @@ namespace MonitorSys
             //DatabaseHelper.GetConnection();
             //设置关联
             Header.TabControl = MainTabControl;
+            UserPage UserPage = new UserPage();
 
 
             //增加页面到Main
             AddPage(new Home(), 1001);
             AddPage(new Logger(), 1002);
             AddPage(new Setter(), 1003);
-            AddPage(new Media(), 1004);
+            AddPage(new UserPage(), 1004);
 
             //设置Header节点索引
             Header.CreateNode("主页", 1001);
@@ -42,6 +48,8 @@ namespace MonitorSys
             Header.SelectedIndex = 0;
         }
 
+
+
         private void FMain_Load(object sender, EventArgs e)
         {
             Footer.Text = "备案号@2875245qerq ";
@@ -52,9 +60,18 @@ namespace MonitorSys
 
             FrmLogin frmLogin = new FrmLogin();
             frmLogin.ShowDialog();
+      
+                //查询当前登录用户信息
+                IUserServiceDB UserServiceDB = new UserServiceDBImpl();
+                User user = new User();
+                user =UserServiceDB.GetUserById(CurrentUserDB.Id);
+                //当前登录用户信息
+                this.uiLabel1.Text = "你好," + user.UserName + ",欢迎回来";
+      
 
 
         }
+
 
     }
 

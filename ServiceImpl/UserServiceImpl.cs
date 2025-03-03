@@ -27,6 +27,8 @@ namespace QQDESK.ServiceImpl
         {
             foreach (var item in Users) {
                 if (item.UserName == user.UserName && item.Password == user.Password) {
+                    //保存当前登录用户id
+                    CurrentUserDB.Id = item.Id;
                     return true;
                 }
             }

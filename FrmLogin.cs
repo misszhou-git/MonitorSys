@@ -69,12 +69,14 @@ namespace QQDESK
 
             if (userService.Login(user))
             {
-                //MessageBox.Show("登录成功，正在跳转进入系统...");
+                MessageBox.Show("登录成功，正在跳转进入系统...");
 
                 //Console.WriteLine("记录日志信息");
                 //Log<FrmLogin>.LogInfomation("LogInfomation");
                 //Log<FrmLogin>.LogWarning("LogWarning");
                 //Log<FrmLogin>.LogError("LogError");
+
+         
 
                 //打开主界面
                 this.DialogResult = DialogResult.Cancel;

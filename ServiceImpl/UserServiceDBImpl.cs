@@ -69,5 +69,31 @@ namespace MonitorSys.ServiceImpl
                 s.WriteLine(sb.ToString());
             }
         }
+
+        /// <summary>
+        /// 根据id查找当前用户对象信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>用户对象</returns>
+        public User GetUserById(string id)
+        {
+            User currentUser = new User();
+            //获取所有用户信息
+            List<User> users = GetUser();
+            //匹配当前用户信息
+            foreach (var item in users)
+            {
+                if (item.Id == id)
+                {
+                    currentUser.Id = item.Id;
+                    currentUser.Account = item.Account;
+                    currentUser.UserName = item.UserName;
+                    currentUser.Password = item.Password;
+                    currentUser.Email = item.Email;
+                    currentUser.Phone = item.Phone;
+                }
+            }
+            return currentUser;
+        }
     }
 }
