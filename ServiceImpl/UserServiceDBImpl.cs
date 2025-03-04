@@ -111,23 +111,22 @@ namespace MonitorSys.ServiceImpl
             FileStream fs = File.Create(path);
             fs.Flush();
             fs.Close();
+            fs.Dispose();
             //构建新用户对象信息
             for(var i=0;i< users.Count; i++)
             {
-                User newUser = new User();
                 if (users[i].Id == user.Id)
                 {
-                    newUser.Id = users[i].Id;
-                    newUser.Account = users[i].Account;
-                    newUser.UserName = users[i].UserName;
-                    newUser.Password = users[i].Password;
-                    newUser.Email = users[i].Email;
-                    newUser.Phone = users[i].Phone;
+                    users[i].Id = user.Id;
+                    users[i].Account = user.Account;
+                    users[i].UserName = user.UserName;
+                    users[i].Password = user.Password;
+                    users[i].Email = user.Email;
+                    users[i].Phone = user.Phone;
                 }
                 //将新信息存入本地文件
-                SaveUser(newUser);
+                SaveUser(users[i]);
             }
-            
 
         }
 

@@ -41,15 +41,15 @@ namespace MonitorSys.Forms.Pages
 
         private void uiButton1_Click(object sender, EventArgs e)
         {
-            User newUser = new User();
-            newUser.Id = CurrentUserDB.Id;
-            newUser.UserName = this.uiTextBox1.Text.Trim();
-            newUser.Account = this.uiTextBox2.Text.Trim();
-            newUser.Password = this.uiTextBox3.Text.Trim();
-            newUser.Email = this.uiTextBox4.Text.Trim();
-            newUser.Phone = this.uiTextBox5.Text.Trim();
+            user.Id = CurrentUserDB.Id;
+       
+            user.UserName = this.uiTextBox1.Text.Trim();
+            user.Account = this.uiTextBox2.Text.Trim();
+            user.Password = this.uiTextBox3.Text.Trim();
+            user.Email = this.uiTextBox4.Text.Trim();
+            user.Phone = this.uiTextBox5.Text.Trim();
 
-            UserServiceDB.UpdateUserById(newUser);
+            UserServiceDB.UpdateUserById(user);
             MessageBox.Show("用户信息更新成功");
         }
     }

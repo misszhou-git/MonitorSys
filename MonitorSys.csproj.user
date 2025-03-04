@@ -25,5 +25,8 @@
     <Compile Update="Forms\Pages\Setter.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ListBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
