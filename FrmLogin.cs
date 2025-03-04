@@ -31,7 +31,11 @@ namespace QQDESK
         private void logout_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        
+            
+
         }
+
 
         private void usernameBox_TextChanged(object sender, EventArgs e)
         {
@@ -76,10 +80,8 @@ namespace QQDESK
                 //Log<FrmLogin>.LogWarning("LogWarning");
                 //Log<FrmLogin>.LogError("LogError");
 
-         
-
                 //打开主界面
-                this.DialogResult = DialogResult.Cancel;
+                this.DialogResult = DialogResult.OK;
             }
             else
             {

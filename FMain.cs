@@ -16,6 +16,7 @@ using QQDESK;
 using QQDESK.Models;
 using Sunny.UI;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace MonitorSys
 {
@@ -25,6 +26,8 @@ namespace MonitorSys
         public FMain()
         {
             InitializeComponent();
+            this.FormClosing += new FormClosingEventHandler(Fmain_FormClosing);
+
             //连接数据库
             //DatabaseHelper.GetConnection();
             //设置关联
@@ -48,18 +51,11 @@ namespace MonitorSys
             Header.SelectedIndex = 0;
         }
 
-
-
         private void FMain_Load(object sender, EventArgs e)
-        {
+        {   
             Footer.Text = "备案号@2875245qerq ";
             //窗体最大化
             this.WindowState = FormWindowState.Maximized;
-
-            this.Hide();
-
-            FrmLogin frmLogin = new FrmLogin();
-            frmLogin.ShowDialog();
 
             //查询当前登录用户信息
             IUserServiceDB UserServiceDB = new UserServiceDBImpl();
@@ -68,14 +64,26 @@ namespace MonitorSys
             //当前登录用户信息
             //this.uiLabel1.Text = "你好," + user.UserName + ",欢迎回来";
 
-
-
         }
 
         private void uiButton1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        public void Fmain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                DialogResult dr = MessageBox.Show("确定要退出吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dr == DialogResult.No)
+                {
+                    e.Cancel = true; // 取消关闭操作
+                }
+            }
+        }
+
+
     }
 
 }

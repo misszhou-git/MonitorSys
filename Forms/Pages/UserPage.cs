@@ -19,6 +19,8 @@ namespace MonitorSys.Forms.Pages
     {
         public User user { get; set; }
         public IUserServiceDB UserServiceDB { get; set; }
+  
+    
         public UserPage()
         {
             InitializeComponent();
@@ -50,6 +52,8 @@ namespace MonitorSys.Forms.Pages
             user.Phone = this.uiTextBox5.Text.Trim();
 
             UserServiceDB.UpdateUserById(user);
+          
+
             MessageBox.Show("用户信息更新成功");
         }
     }
