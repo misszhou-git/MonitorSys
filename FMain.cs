@@ -28,12 +28,11 @@ namespace MonitorSys
             InitializeComponent();
             this.FormClosing += new FormClosingEventHandler(Fmain_FormClosing);
 
-            //连接数据库
-            //DatabaseHelper.GetConnection();
             //设置关联
             Header.TabControl = MainTabControl;
             UserPage UserPage = new UserPage();
-
+            //连接数据库
+            DatabaseHelper.GetConnection();
 
             //增加页面到Main
             AddPage(new Home(), 1001);
@@ -62,7 +61,7 @@ namespace MonitorSys
             User user = new User();
             user = UserServiceDB.GetUserById(CurrentUserDB.Id);
             //当前登录用户信息
-            //this.uiLabel1.Text = "你好," + user.UserName + ",欢迎回来";
+            this.uiLabel1.Text = "你好," + user.UserName + ",欢迎回来";
 
         }
 

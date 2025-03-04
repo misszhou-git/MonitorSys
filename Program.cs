@@ -21,6 +21,7 @@ namespace QQDESK
             if (frmLogin.DialogResult == DialogResult.OK )
             {
                 Application.Run(new FMain());
+                
             }
         }
     }
