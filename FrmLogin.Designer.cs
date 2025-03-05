@@ -94,7 +94,6 @@ namespace QQDESK
             usernameBox.Name = "usernameBox";
             usernameBox.Size = new Size(282, 30);
             usernameBox.TabIndex = 5;
-            usernameBox.Text = "admin";
             usernameBox.TextChanged += usernameBox_TextChanged;
             // 
             // passwordBox
@@ -103,7 +102,6 @@ namespace QQDESK
             passwordBox.Name = "passwordBox";
             passwordBox.Size = new Size(282, 30);
             passwordBox.TabIndex = 6;
-            passwordBox.Text = "123456";
             passwordBox.TextChanged += passwordBox_TextChanged;
             // 
             // tipsText
@@ -133,6 +131,7 @@ namespace QQDESK
             // 
             // uiButton1
             // 
+            uiButton1.Enabled = false;
             uiButton1.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point, 134);
             uiButton1.Location = new Point(244, 374);
             uiButton1.MinimumSize = new Size(1, 1);

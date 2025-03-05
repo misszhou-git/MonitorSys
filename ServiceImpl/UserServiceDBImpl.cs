@@ -24,14 +24,16 @@ namespace MonitorSys.ServiceImpl
         {
             List<User> users = new List<User>();
             string localUser = null;
-            using (StreamReader s = new StreamReader(path))
-            {
-                while (!s.EndOfStream)
-                {
-                    localUser = s.ReadLine();
-                    users.Add(ParseUser(localUser));
-                }
-            }
+
+            users = DatabaseHelper.QueryUser(null);
+            //using (StreamReader s = new StreamReader(path))
+            //{
+            //    while (!s.EndOfStream)
+            //    {
+            //        localUser = s.ReadLine();
+            //        users.Add(ParseUser(localUser));
+            //    }
+            //}
             return users;
         }
         //解析当前用户字符串信息

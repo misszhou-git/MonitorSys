@@ -1,3 +1,4 @@
+using System.IO;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualBasic.ApplicationServices;
@@ -20,6 +21,8 @@ namespace QQDESK
     {
         public UserDB UserDB { get; set; }
         public IUserServiceDB UserServiceDB {  get; set; }
+
+        public const string PATH = @"D:\\1.Project\\MonitorSys\remembetPassword.txt";
 
         public FrmLogin()
         {
@@ -82,6 +85,13 @@ namespace QQDESK
 
                 //打开主界面
                 this.DialogResult = DialogResult.OK;
+
+                //更新当前登录用户信息及记住密码功能
+                //using (FileStream fs = File.Create(PATH))
+                //{
+                //    string[] bytesToWrite = { user.UserName, this.rememberCheck.Checked.ToString() };
+                //    File.WriteAllText(PATH,bytesToWrite.ToString());
+                //}
             }
             else
             {
@@ -120,6 +130,7 @@ namespace QQDESK
             UserServiceDB = new UserServiceDBImpl();
             UserDB.users = UserServiceDB.GetUser();
 
+           
         }
 
 
@@ -133,8 +144,7 @@ namespace QQDESK
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (rememberCheck.Checked) {
-                string path = @"D:\\1.Project\\MonitorSys\remembetPassword.txt";
-                using(FileStream fs = File.Create(path))
+                using(FileStream fs = File.Create(PATH))
                 {
                     byte[] info = new UTF8Encoding(true).GetBytes("true");
                     fs.Write(info, 0, info.Length);

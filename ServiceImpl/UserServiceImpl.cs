@@ -26,7 +26,7 @@ namespace QQDESK.ServiceImpl
         public bool Login(User user)
         {
             foreach (var item in Users) {
-                if (item.UserName == user.UserName && item.Password == user.Password) {
+                if (item.UserName.Trim() == user.UserName && item.Password.Trim() == user.Password) {
                     //保存当前登录用户id
                     CurrentUserDB.Id = item.Id;
                     return true;
@@ -59,7 +59,7 @@ namespace QQDESK.ServiceImpl
 
             //保存注册用户信息
          
-            UserServiceDB.SaveUser(user);
+           //UserServiceDB.SaveUser(user);
             DatabaseHelper.AddUser(user);
 
             return true;
