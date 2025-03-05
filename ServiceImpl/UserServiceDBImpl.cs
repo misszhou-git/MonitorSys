@@ -37,22 +37,22 @@ namespace MonitorSys.ServiceImpl
             return users;
         }
         //解析当前用户字符串信息
-        private User ParseUser(string? localUser)
-        {
-            User user = new User();
-            string[] str = localUser.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
-            try
-            {
-                user.Id = str[0];
-                user.Account = str[1];
-                user.UserName = str[2];
-                user.Password = str[3];
-                user.Email = str[4];
-                user.Phone = str[5];
-            }
-            catch { }
-            return user;
-        }
+        //private  User ParseUser(string? localUser)
+        //{
+        //    User user = new User();
+        //    string[] str = localUser.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+        //    try
+        //    {
+        //        user.Id = str[0];
+        //        user.Account = str[1];
+        //        user.UserName = str[2];
+        //        user.Password = str[3];
+        //        user.Email = str[4];
+        //        user.Phone = str[5];
+        //    }
+        //    catch { }
+        //    return user;
+        //}
 
         /// <summary>
         /// 保存用户信息
@@ -61,16 +61,16 @@ namespace MonitorSys.ServiceImpl
     
         public void SaveUser(User user)
         {
-            StringBuilder sb = new StringBuilder();
             //生成guid
             user.Id = Guid.NewGuid().ToString();
+            DatabaseHelper.AddUser(user);
 
-            sb.Append($"{user.Id} {user.Account} {user.UserName}  {user.Password} {user.Email} {user.Phone}");
-
-            using (StreamWriter s = new StreamWriter(path, true))
-            {
-                s.WriteLine(sb.ToString());
-            }
+            //StringBuilder sb = new StringBuilder();
+            //sb.Append($"{user.Id} {user.Account} {user.UserName}  {user.Password} {user.Email} {user.Phone}");
+            //using (StreamWriter s = new StreamWriter(path, true))
+            //{
+            //    s.WriteLine(sb.ToString());
+            //}
         }
 
         /// <summary>

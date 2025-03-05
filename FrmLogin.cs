@@ -22,7 +22,7 @@ namespace QQDESK
         public UserDB UserDB { get; set; }
         public IUserServiceDB UserServiceDB {  get; set; }
 
-        public const string PATH = @"D:\\1.Project\\MonitorSys\remembetPassword.txt";
+        public const string PATH = @"Users\remberPass.txt";
 
         public FrmLogin()
         {
@@ -34,9 +34,6 @@ namespace QQDESK
         private void logout_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        
-            
-
         }
 
 
@@ -66,6 +63,11 @@ namespace QQDESK
             }
             this.uiButton1.Enabled = true;
         }
+        /// <summary>
+        /// 登录按钮点击
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void uiButton1_Click(object sender, EventArgs e)
         {
             Models.User user = new Models.User();
@@ -87,11 +89,13 @@ namespace QQDESK
                 this.DialogResult = DialogResult.OK;
 
                 //更新当前登录用户信息及记住密码功能
-                //using (FileStream fs = File.Create(PATH))
-                //{
-                //    string[] bytesToWrite = { user.UserName, this.rememberCheck.Checked.ToString() };
-                //    File.WriteAllText(PATH,bytesToWrite.ToString());
-                //}
+                File.WriteAllText(PATH, "");
+                StringBuilder sb = new StringBuilder();
+                sb.Append($"{user.UserName}  {this.passwordBox.Text.Trim()} {this.rememberCheck.Checked}");
+                using (StreamWriter s = new StreamWriter(PATH, true))
+                {
+                    s.WriteLine(sb.ToString());
+                }
             }
             else
             {
@@ -104,27 +108,26 @@ namespace QQDESK
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
+            //获取当地记录用户
+            Models.User user = new Models.User();
+            string localUser = null;
 
-            // this.Show();
-            //读取是否记住密码
-            string filePath = @"Users\remberPass.txt";
-            using (StreamReader reader = new StreamReader(filePath))
+            using (StreamReader s = new StreamReader(PATH))
             {
-                try
+                while (!s.EndOfStream)
                 {
-                    if (reader.ReadLine() == "true")
-                    {
-                        this.rememberCheck.Checked = true;
-                    }
-                    else
-                    {
-                        this.rememberCheck.Checked = false;
-                    }
-                }
-                catch (Exception ex) {
-                    Console.WriteLine(ex.Message);
+                    localUser = s.ReadLine();
+                    user = ParseUser(localUser);
                 }
             }
+            //读取是否记住密码
+            this.usernameBox.Text = user.UserName;
+            if (user.Check.ToBoolean())
+            {
+                this.rememberCheck.Checked = user.Check.ToBoolean();
+                this.passwordBox.Text = user.Password;
+            }
+                    
             //获取本地用户信息
             UserDB  =  UserDB.GetUserDb();
             UserServiceDB = new UserServiceDBImpl();
@@ -132,7 +135,6 @@ namespace QQDESK
 
            
         }
-
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
@@ -150,6 +152,24 @@ namespace QQDESK
                     fs.Write(info, 0, info.Length);
                 }
             }
+        }
+        /// <summary>
+        /// 解析本地用户记住密码信息
+        /// </summary>
+        /// <param name="localUser">当前正在登录的用户信息</param>
+        /// <returns>User</returns>
+        private Models.User ParseUser(string localUser)
+        {
+            Models.User user = new Models.User();
+            string[] str = localUser.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            try
+            {
+                user.UserName = str[0];
+                user.Password = str[1];
+                user.Check = str[2];
+            }
+            catch { }
+            return user;
         }
     }
 }

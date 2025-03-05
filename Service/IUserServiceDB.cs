@@ -41,6 +41,6 @@ namespace MonitorSys.Service
         /// <param name="id"></param>
         /// <returns>用户对象</returns>
         void DeleteUserById();
-       
+        //User ParseUser(string? localUser);
     }
 }

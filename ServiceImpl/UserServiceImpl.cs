@@ -58,9 +58,7 @@ namespace QQDESK.ServiceImpl
             user.Password = MD5Helper.GetMd5(user.Password);
 
             //保存注册用户信息
-         
-           //UserServiceDB.SaveUser(user);
-            DatabaseHelper.AddUser(user);
+            UserServiceDB.SaveUser(user);
 
             return true;
         }
